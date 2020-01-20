@@ -5,6 +5,7 @@ const slash = require(`slash`)
 // called after the Gatsby bootstrap is finished so you have
 // access to any information necessary to programmatically
 // create pages.
+// Will create a custom templated WordPress page (route : /home) for this example
 // Will create pages for WordPress pages (route : /{slug})
 // Will create pages for WordPress posts (route : /post/{slug})
 exports.createPages = async ({ graphql, actions }) => {
@@ -18,7 +19,27 @@ exports.createPages = async ({ graphql, actions }) => {
   // from the fetched data that you can run queries against.
   const result = await graphql(`
     {
-      allWordpressPage {
+      allWordpressPage(filter: {
+        title: {
+          ne: "Home Page"
+        }
+      }) {
+        edges {
+          node {
+            id
+            slug
+            status
+            template
+            title
+            content
+          }
+        }
+      }
+      homePage: allWordpressPage(filter: {
+        title: {
+          eq: "Home Page"
+        }
+      }) {
         edges {
           node {
             id
@@ -52,7 +73,7 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Access query results via object destructuring
-  const { allWordpressPage, allWordpressPost } = result.data
+  const { allWordpressPage, homePage, allWordpressPost } = result.data
 
   // Create Page pages.
   const pageTemplate = path.resolve(`./src/templates/page.js`)
@@ -71,6 +92,18 @@ exports.createPages = async ({ graphql, actions }) => {
       // can query data specific to each page.
       path: `/${edge.node.slug}`,
       component: slash(pageTemplate),
+      context: edge.node,
+    })
+  })
+
+
+  // DECLARATION OF A CUSTOM PAGE TEMPLATE
+  const homeTemplate = path.resolve(`./src/templates/homePage.js`);
+
+  homePage.edges.forEach(edge => {
+    createPage({
+      path: `/${edge.node.slug}`,
+      component: slash(homeTemplate),
       context: edge.node,
     })
   })
