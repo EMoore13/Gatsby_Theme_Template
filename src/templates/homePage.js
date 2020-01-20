@@ -1,11 +1,11 @@
 import React from 'react'
-import Layout from '../components/layout';
+import HomeLayout from '../components/homeLayout';
 
 export default ({pageContext}) => (
-    <Layout>
+    <HomeLayout>
         <h1 dangerouslySetInnerHTML={{__html: pageContext.title}} />
         <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
 
         For reference this is a different template
-    </Layout>
+    </HomeLayout>
 );

@@ -5,9 +5,10 @@ import styled from 'styled-components'
 import SiteInfo from './SiteInfo';
 
 const NavContainer = styled.div`
+    position: static;
     width: 100%;
     display: flex;
-    background-color: #00325a;
+    background-color: rgba(255, 0, 0, 1);
 `;
 
 const MainInner = styled.div`
