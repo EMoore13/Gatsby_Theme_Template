@@ -8,7 +8,7 @@ const NavContainer = styled.div`
     position: static;
     width: 100%;
     display: flex;
-    background-color: rgba(255, 0, 0, 1);
+    background-color: #461220;
 `;
 
 const MainInner = styled.div`

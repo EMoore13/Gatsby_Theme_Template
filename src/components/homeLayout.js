@@ -4,11 +4,13 @@ import MainMenu from './MainMenu'
 import WelcomeBanner from './WelcomeBanner';
 import styled, { createGlobalStyle } from 'styled-components'
 
+import './fonts.css';
+
 const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Overpass';
   }
 `;
 

@@ -15,12 +15,13 @@ const TitleStyle = styled(Link)`
     text-transform: capitalize;
     margin: 0;
     color: white;
-    font-size: 25px;
+    font-family: 'Yantramanav';
+    font-size: 30px;
     margin-right: 10px;
 `;
 
 const DescStyle = styled.h6`
-    font-size: 15px;
+    font-size: 14px;
     font-style: italic;
     margin: 0;
     font-weight: normal;
